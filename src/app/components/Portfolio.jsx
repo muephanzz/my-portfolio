@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FaDownload, FaEnvelope, FaGithub, FaLinkedin, FaBars, FaTimes } from "react-icons/fa";
 
@@ -11,12 +11,22 @@ const projects = [
 
 const Portfolio = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isTypingComplete, setIsTypingComplete] = useState(false);
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
   const closeMenu = () => setMenuOpen(false);
 
+  useEffect(() => {
+    const typingTimeout = setTimeout(() => {
+      setIsTypingComplete(true);
+    }, 4000); // Match the typing animation duration
+
+    return () => clearTimeout(typingTimeout);
+  }, []);
+
   return (
     <div className="min-h-screen bg-gray-900 text-white p-10 relative">
+      
       {/* Navbar */}
       <motion.nav
         initial={{ opacity: 0, y: -50 }}
@@ -66,26 +76,73 @@ const Portfolio = () => {
 
       {/* Main Content */}
       <div className={`pt-20 ${menuOpen ? 'pointer-events-none' : ''}`}>
-        {/* About Section */}
-        <motion.section
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-          className="max-w-3xl mx-auto text-center mb-10"
-        >
-          <p className="text-gray-300">
-            I am a passionate developer with a strong background in Applied Statistics and Programming,
-            specializing in building interactive and user-friendly web applications.
-          </p>
-          <a href="/resume.pdf" download>
-            <button className="mt-4 flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg">
-              <FaDownload /> Download Resume
-            </button>
-          </a>
-        </motion.section>
+        
+        {/* About Section with Background Image and Typing Effect */}
+        <div className="relative">
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: 'url("public/images/me.png")' }}
+          >
+            <motion.section
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8 }}
+              className="flex justify-center items-center h-full text-center relative z-10"
+            >
+              <div className="max-w-3xl mx-auto text-white px-6">
+                <h1 className="text-4xl font-bold mb-4 text-white">
+                  <span className={`typewriter-text ${isTypingComplete ? 'typing-finished' : ''}`}>
+                    I am a passionate developer with a strong background in Applied Statistics and Programming, specializing in building interactive and user-friendly web applications.
+                  </span>
+                </h1>
+                <a href="/resume.pdf" download>
+                  <button className="mt-4 flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg">
+                    <FaDownload /> Download Resume
+                  </button>
+                </a>
+              </div>
+            </motion.section>
+          </div>
 
-          {/* Images Section */}
-          <motion.section
+          {/* CSS for Typing Animation */}
+          <style jsx>{`
+            .typewriter-text {
+              display: inline-block;
+              overflow: hidden;
+              border-right: .15em solid #fff;
+              white-space: nowrap;
+              margin: 0 auto;
+              letter-spacing: .1em;
+              animation: typing 4s steps(60) 1s 1 normal both, blinkCaret 0.75s step-end infinite;
+            }
+
+            .typing-finished {
+              border-color: transparent; /* Remove the caret once typing is finished */
+              animation: typing 4s steps(60) 1s 1 normal both;
+            }
+
+            @keyframes typing {
+              from {
+                width: 0;
+              }
+              to {
+                width: 100%;
+              }
+            }
+
+            @keyframes blinkCaret {
+              from, to {
+                border-color: transparent;
+              }
+              50% {
+                border-color: #fff;
+              }
+            }
+          `}</style>
+        </div>
+
+        {/* Images Section */}
+        <motion.section
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -100,7 +157,7 @@ const Portfolio = () => {
               className="bg-gray-800 p-5 rounded-lg shadow-lg"
             >
               <img
-                src="/path/to/your/image1.jpg"
+                src="/images/me.png"
                 alt="Work 1"
                 className="w-64 h-64 object-cover rounded-lg"
               />
