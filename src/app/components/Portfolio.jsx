@@ -34,7 +34,7 @@ const Portfolio = () => {
         transition={{ duration: 0.8 }}
         className="fixed top-0 left-0 right-0 bg-gray-900 z-50 p-5 flex justify-between items-center"
       >
-        <h1 className="text-3xl font-bold">Ephantus Muriithi</h1>
+        <h1 className="text-3xl font-bold">My Portfolio</h1>
 
         {/* Mobile Menu Icon */}
         <div className="md:hidden">
@@ -51,19 +51,19 @@ const Portfolio = () => {
         </div>
       </motion.nav>
 
-      {/* Mobile Menu with Overlay */}
+      {/* Mobile Menu */}
       <motion.div
         initial={{ opacity: 0, x: -200 }}
         animate={{ opacity: menuOpen ? 1 : 0, x: menuOpen ? 0 : -200 }}
         transition={{ duration: 0.3 }}
-        className={`absolute top-0 left-0 w-7/10 h-full bg-gray-800 z-40 p-5 space-y-4 md:hidden ${menuOpen ? 'block' : 'hidden'}`}
+        className={`fixed mt-8 left-0 w-64 h-full bg-gray-800 z-40 p-5 space-y-4 md:hidden ${menuOpen ? 'block' : 'hidden'}`}
       >
-        <a href="#about" className="text-gray-300 text-xl hover:text-white" onClick={closeMenu}>About</a>
-        <a href="#projects" className="text-gray-300 text-xl hover:text-white" onClick={closeMenu}>Projects</a>
-        <a href="#contact" className="text-gray-300 text-xl hover:text-white" onClick={closeMenu}>Contact</a>
+        <a href="#about" className="text-gray-300 text-xl hover:text-white block" onClick={closeMenu}>About</a>
+        <a href="#projects" className="text-gray-300 text-xl hover:text-white block" onClick={closeMenu}>Projects</a>
+        <a href="#contact" className="text-gray-300 text-xl hover:text-white block" onClick={closeMenu}>Contact</a>
       </motion.div>
 
-      {/* Overlay to disable interaction when menu is open */}
+      {/* Overlay for mobile menu */}
       {menuOpen && (
         <motion.div
           initial={{ opacity: 0 }}
@@ -77,76 +77,79 @@ const Portfolio = () => {
       {/* Main Content */}
       <div className={`pt-20 ${menuOpen ? 'pointer-events-none' : ''}`}>
         
-        {/* About Section with Background Image and Typing Effect */}
-        <div className="relative">
+        {/* About Section with Background Image */}
+        <div className="relative h-screen flex justify-center items-center text-center">
           <div
             className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: 'url("public/images/me.png")' }}
+            style={{ backgroundImage: 'url("/images/me.png")' }}
           >
-            <motion.section
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8 }}
-              className="flex justify-center items-center h-full text-center relative z-10"
-            >
-              <div className="max-w-3xl mx-auto text-white px-6">
-                <h1 className="text-4xl font-bold mb-4 text-white">
-                  <span className={`typewriter-text ${isTypingComplete ? 'typing-finished' : ''}`}>
-                    I am a passionate developer with a strong background in Applied Statistics and Programming, specializing in building interactive and user-friendly web applications.
-                  </span>
-                </h1>
-                <a href="/resume.pdf" download>
-                  <button className="mt-4 flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg">
-                    <FaDownload /> Download Resume
-                  </button>
-                </a>
-              </div>
-            </motion.section>
+            <div className="absolute inset-0 bg-black bg-opacity-50"></div> {/* Overlay */}
           </div>
 
-          {/* CSS for Typing Animation */}
-          <style jsx>{`
-            .typewriter-text {
-              display: inline-block;
-              overflow: hidden;
-              border-right: .15em solid #fff;
-              white-space: nowrap;
-              margin: 0 auto;
-              letter-spacing: .1em;
-              animation: typing 4s steps(60) 1s 1 normal both, blinkCaret 0.75s step-end infinite;
-            }
-
-            .typing-finished {
-              border-color: transparent; /* Remove the caret once typing is finished */
-              animation: typing 4s steps(60) 1s 1 normal both;
-            }
-
-            @keyframes typing {
-              from {
-                width: 0;
-              }
-              to {
-                width: 100%;
-              }
-            }
-
-            @keyframes blinkCaret {
-              from, to {
-                border-color: transparent;
-              }
-              50% {
-                border-color: #fff;
-              }
-            }
-          `}</style>
+          <motion.section
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            className="relative z-10 max-w-3xl mx-auto text-white px-6"
+          >
+            <h1 className="text-3xl font-bold mb-4 text-white">
+              <span className={`typewriter-text ${isTypingComplete ? 'typing-finished' : ''}`}>
+                I am a passionate developer with a strong background in Applied Statistics and Programming, specializing in building interactive and user-friendly web applications.
+              </span>
+            </h1>
+            <div className="flex justify-center">
+              <a href="/resume.pdf" download>
+                <button className="mt-4 flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg">
+                  <FaDownload /> Download Resume
+                </button>
+              </a>
+            </div>
+          </motion.section>
         </div>
+
+        {/* Typing Effect Styles */}
+        <style jsx>{`
+          .typewriter-text {
+            display: inline-block;
+            overflow: hidden;
+            border-right: .15em solid #fff;
+
+            margin: 0 auto;
+            letter-spacing: .1em;
+            animation: typing 4s steps(60) 1s 1 normal both, blinkCaret 0.75s step-end infinite;
+          }
+
+          .typing-finished {
+            border-color: transparent; /* Remove the caret once typing is finished */
+            animation: typing 4s steps(60) 1s 1 normal both;
+          }
+
+          @keyframes typing {
+            from {
+              width: 0;
+            }
+            to {
+              width: 100%;
+            }
+          }
+
+          @keyframes blinkCaret {
+            from, to {
+              border-color: transparent;
+              height: 30px;
+            }
+            50% {
+              border-color: #fff;
+            }
+          }
+        `}</style>
 
         {/* Projects Section */}
         <motion.section
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10"
         >
           {projects.map((project, index) => (
             <motion.div
@@ -157,10 +160,7 @@ const Portfolio = () => {
             >
               <h3 className="text-xl font-semibold">{project.title}</h3>
               <p className="text-gray-400">{project.description}</p>
-              <a
-                href={project.link}
-                className="text-blue-500 mt-2 inline-block hover:underline"
-              >
+              <a href={project.link} className="text-blue-500 mt-2 inline-block hover:underline">
                 View Project →
               </a>
             </motion.div>
