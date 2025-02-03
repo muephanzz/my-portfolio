@@ -19,7 +19,7 @@ const Portfolio = () => {
   useEffect(() => {
     const typingTimeout = setTimeout(() => {
       setIsTypingComplete(true);
-    }, 4000); // Match the typing animation duration
+    }, 2000); // Match the typing animation duration
 
     return () => clearTimeout(typingTimeout);
   }, []);
@@ -93,9 +93,11 @@ const Portfolio = () => {
             className="relative z-10 max-w-3xl mx-auto text-white px-6"
           >
             <h1 className="text-3xl font-bold mb-4 text-white">
-              <span className={`typewriter-text ${isTypingComplete ? 'typing-finished' : ''}`}>
-                I am a passionate developer with a strong background in Applied Statistics and Programming, specializing in building interactive and user-friendly web applications.
-              </span>
+            <div style={{height: 90, display:"grid",  gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))"}} className={`typewriter-text ${isTypingComplete ? 'typing-finished' : ''}`}>
+                Offering strong interpersonal skills andhhhhhhhhh hhhhhhhhhhhh hhhhhhhhh 
+                hhhhhhhhhh hhhhhhhh ghhhh ggg iiiiiu
+                gggg hhhh diii iiiif kkkfffh kkkk
+              </div>
             </h1>
             <div className="flex justify-center">
               <a href="/resume.pdf" download>
@@ -113,15 +115,14 @@ const Portfolio = () => {
             display: inline-block;
             overflow: hidden;
             border-right: .15em solid #fff;
-
             margin: 0 auto;
             letter-spacing: .1em;
-            animation: typing 4s steps(60) 1s 1 normal both, blinkCaret 0.75s step-end infinite;
+            animation: typing 2s steps(60) 1s 1 normal both, blinkCaret 0.75s step-end infinite;
           }
 
           .typing-finished {
             border-color: transparent; /* Remove the caret once typing is finished */
-            animation: typing 4s steps(60) 1s 1 normal both;
+            animation: typing 6s steps(60) 1s 1 normal both;
           }
 
           @keyframes typing {
@@ -138,7 +139,7 @@ const Portfolio = () => {
               border-color: transparent;
               height: 30px;
             }
-            50% {
+            0% {
               border-color: #fff;
             }
           }
