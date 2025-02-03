@@ -141,56 +141,6 @@ const Portfolio = () => {
           `}</style>
         </div>
 
-        {/* Images Section */}
-        <motion.section
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-10"
-        >
-          <h2 className="text-3xl font-semibold mb-4">My Work</h2>
-          <div className="flex justify-center gap-6 flex-wrap">
-            {/* Image 1 */}
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 200 }}
-              className="bg-gray-800 p-5 rounded-lg shadow-lg"
-            >
-              <img
-                src="/images/me.png"
-                alt="Work 1"
-                className="w-64 h-64 object-cover rounded-lg"
-              />
-            </motion.div>
-
-            {/* Image 2 */}
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 200 }}
-              className="bg-gray-800 p-5 rounded-lg shadow-lg"
-            >
-              <img
-                src="/path/to/your/image2.jpg"
-                alt="Work 2"
-                className="w-64 h-64 object-cover rounded-lg"
-              />
-            </motion.div>
-
-            {/* Image 3 */}
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 200 }}
-              className="bg-gray-800 p-5 rounded-lg shadow-lg"
-            >
-              <img
-                src="/path/to/your/image3.jpg"
-                alt="Work 3"
-                className="w-64 h-64 object-cover rounded-lg"
-              />
-            </motion.div>
-          </div>
-        </motion.section>
-
         {/* Projects Section */}
         <motion.section
           initial={{ opacity: 0, y: 50 }}
